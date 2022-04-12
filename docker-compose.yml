@@ -1,0 +1,41 @@
+version: '3'
+
+services:
+  server:
+    image: server
+    build:
+      context: ./api_server
+    restart: on-failure
+    depends_on:
+      - mongo
+      - broker
+    environment:
+      - MONGO_USERNAME=root
+      - MONGO_PASSWORD=example
+      - MONGO_URL=mongodb://root:example@mongo:27017/mernapp?authSource=admin
+      - MONGO_SERVICE=mongo
+      - BROKER_HOST=broker
+
+  mongo:
+    ports:
+      - 27017:27017
+    restart: on-failure
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+    volumes:
+      # Set mondo db storage voulume name.
+      - mongo-db:/data/db
+  
+  client:
+    image: client
+    build: 
+      context: ./my_react_route
+    restart: on-failure
+  broker:
+    image: broker
+    build:
+      context: ./broker
+    restart: on-failure
+volumes:
+  mongo-db:

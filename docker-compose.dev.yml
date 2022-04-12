@@ -1,0 +1,52 @@
+version: '3'
+
+services:
+  server:
+    build:
+      dockerfile: Dockerfile-dev
+      args:
+        PORT: ${PORT}
+    ports:
+      - "3001:3001"
+    command: yarn run dev
+    environment:
+      - PORT=3001
+      - CLIENT_URL=http://localhost:3000
+    # bind mount
+    volumes:
+      - ./api_server:/mern-app/server
+      - /mern-app/server/node_modules
+
+  mongo:
+    image: mongo:latest
+
+  client:
+    build: 
+      dockerfile: Dockerfile-dev
+      args:
+        PORT: ${PORT}
+    environment:
+      - PORT=3000
+      - REACT_APP_API_URL=http://localhost:3001
+    ports:
+      - "3000:3000"
+    command: yarn start
+    # bind mount
+    volumes:
+      - ./my_react_route:/mern-app/client
+      - /mern-app/client/node_modules
+  broker:
+    build:
+      dockerfile: Dockerfile-dev
+      args:
+        PORT: ${PORT}
+    ports:
+      - 1883:1883
+    command: yarn run dev
+    environment:
+      - PORT=1883
+    # bind mount
+    volumes:
+      - ./broker:/mern-app/broker
+      - /mern-app/broker/node_modules    
+  

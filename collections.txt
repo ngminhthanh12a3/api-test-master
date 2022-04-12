@@ -1,0 +1,4 @@
+kill port: fuser -n tcp -k PORT-NO
+
+docker-compose -f docker-compose.yml -f docker-compose.dev.yml up -d
+git pull https://github.com/ngminhthanh12a3/api-test-master.git
