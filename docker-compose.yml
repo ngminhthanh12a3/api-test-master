@@ -15,6 +15,11 @@ services:
       - MONGO_URL=mongodb://root:example@mongo:27017/mernapp?authSource=admin
       - MONGO_SERVICE=mongo
       - BROKER_HOST=broker
+    # limit logs
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "3"
 
   mongo:
     ports:
@@ -26,16 +31,31 @@ services:
     volumes:
       # Set mondo db storage voulume name.
       - mongo-db:/data/db
+    # limit logs
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "3"
   
   client:
     image: client
     build: 
       context: ./my_react_route
     restart: on-failure
+    # limit logs
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "3"
   broker:
     image: broker
     build:
       context: ./broker
     restart: on-failure
+    # limit logs
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "3"
 volumes:
   mongo-db:
