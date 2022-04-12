@@ -45,35 +45,35 @@ aedes.on("client", function (client) {
 });
 
 // emitted when a client disconnects from the broker
-aedes.on("clientDisconnect", function (client) {
-  console.log(
-    `[CLIENT_DISCONNECTED] Client ${
-      client ? client.id : client
-    } disconnected from the broker ${aedes.id}`
-  );
-});
+// aedes.on("clientDisconnect", function (client) {
+//   console.log(
+//     `[CLIENT_DISCONNECTED] Client ${
+//       client ? client.id : client
+//     } disconnected from the broker ${aedes.id}`
+//   );
+// });
 
 // emitted when a client subscribes to a message topic
-aedes.on("subscribe", function (subscriptions, client) {
-  console.log(
-    `[TOPIC_SUBSCRIBED] Client ${
-      client ? client.id : client
-    } subscribed to topics: ${subscriptions
-      .map((s) => s.topic)
-      .join(",")} on broker ${aedes.id}`
-  );
-});
+// aedes.on("subscribe", function (subscriptions, client) {
+//   console.log(
+//     `[TOPIC_SUBSCRIBED] Client ${
+//       client ? client.id : client
+//     } subscribed to topics: ${subscriptions
+//       .map((s) => s.topic)
+//       .join(",")} on broker ${aedes.id}`
+//   );
+// });
 
 // emitted when a client unsubscribes from a message topic
-aedes.on("unsubscribe", function (subscriptions, client) {
-  console.log(
-    `[TOPIC_UNSUBSCRIBED] Client ${
-      client ? client.id : client
-    } unsubscribed to topics: ${subscriptions.join(",")} from broker ${
-      aedes.id
-    }`
-  );
-});
+// aedes.on("unsubscribe", function (subscriptions, client) {
+//   console.log(
+//     `[TOPIC_UNSUBSCRIBED] Client ${
+//       client ? client.id : client
+//     } unsubscribed to topics: ${subscriptions.join(",")} from broker ${
+//       aedes.id
+//     }`
+//   );
+// });
 
 // emitted when a client publishes a message packet on the topic
 aedes.on("publish", async function (packet, client) {
