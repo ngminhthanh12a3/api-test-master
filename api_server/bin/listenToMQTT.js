@@ -29,6 +29,7 @@ module.exports = () => {
     //   })
   });
   client.on("message", (topic, payload) => {
-    console.log("Received Message:", topic, payload.toString());
+    // console.log("Received Message:", topic, payload.toString());
+    console.log("MQTT Come");
   });
 };
