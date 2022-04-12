@@ -8,6 +8,13 @@ prune:
 dev-up-build:
 	docker-compose -f docker-compose.yml -f docker-compose.dev.yml up -d --build
 
+# ---------------
+dev-prop-up:
+	docker-compose -f docker-compose.yml -f docker-compose.dev.prop.yml up -d
+dev-prop-down:
+	docker-compose -f docker-compose.yml -f docker-compose.dev.prop.yml down
+dev-prop-up-build:
+	docker-compose -f docker-compose.yml -f docker-compose.dev.prop.yml up -d --build
 own:
 	sudo chmod -R 777 .
 pull:
