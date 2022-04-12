@@ -4,3 +4,4 @@ exports.signupRouter = require("./signup");
 exports.signinRouter = require("./signin");
 exports.signoutRouter = require("./signout");
 exports.checkSigninRouter = require("./checkSignin");
+exports.otaRouter = require("./ota");

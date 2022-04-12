@@ -21,7 +21,7 @@ const topics = ["home/bedroom/fan", "esp/publish"];
 // authorizing client to publish on a message topic
 aedes.authorizePublish = (client, packet, callback) => {
   // check topics
-  if (topics.find((topic) => topic === packet.topic)) {
+  if (topics.find((topic) => topic.includes(packet.topic))) {
     return callback(null);
   }
   console.log("Error ! Unauthorized publish to a topic.");

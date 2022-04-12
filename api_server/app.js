@@ -70,6 +70,10 @@ app.use("/signup", signupRouter);
 app.use("/signin", signinRouter);
 app.use("/signout", signoutRouter);
 app.use("/checkSignin", checkSigninRouter);
+
+var { appUseOTAMiddleware } = require("./middleware");
+appUseOTAMiddleware(app);
+
 app.use("/test", (req, res, next) => {
   req.session.user = { use: "test" };
   // req.session.save()
