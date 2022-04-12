@@ -16,6 +16,9 @@ var http = require("http");
 var { connectToMongo } = require("./mongoDB");
 connectToMongo();
 
+// listen to mqtt
+var listenToMQTT = require("./listenToMQTT");
+listenToMQTT();
 var port = normalizePort(process.env.PORT || "3001");
 app.set("port", port);
 

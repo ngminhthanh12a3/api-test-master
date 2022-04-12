@@ -17,5 +17,6 @@ dev-prop-up-build:
 	docker-compose -f docker-compose.yml -f docker-compose.dev.prop.yml up -d --build
 own:
 	sudo chmod -R 777 .
+	sudo chmod 666 /var/run/docker.sock
 pull:
 	git pull https://github.com/ngminhthanh12a3/api-test-master.git
