@@ -20,8 +20,8 @@ aedes.authenticate = (client, username, password, callback) => {
 const topics = [
   "home/bedroom/fan",
   "esp/publish",
-  "relay1/devID/",
-  "relay2/devID/",
+  "relay1/devID",
+  "relay2/devID",
 ];
 // authorizing client to publish on a message topic
 aedes.authorizePublish = (client, packet, callback) => {
