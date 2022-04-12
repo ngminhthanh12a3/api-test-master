@@ -1,7 +1,7 @@
-const { http } = require("./www");
-const io = require("socket.io")(http);
+const { io } = require("./www.js");
 
 module.exports = (data) => {
-  console.log("Emitted");
+  // test emit
+  //   console.log("Emitted");
   io.emit("encryptDT", data);
 };

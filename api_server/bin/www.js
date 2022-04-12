@@ -12,7 +12,6 @@ var http = require("http");
  * Get port from environment and store in Express.
  */
 
-exports.http = http;
 // connect to mongodb
 var { connectToMongo } = require("./mongoDB");
 connectToMongo();
@@ -92,3 +91,5 @@ function onListening() {
   var bind = typeof addr === "string" ? "pipe " + addr : "port " + addr.port;
   debug("Listening on " + bind);
 }
+
+exports.io = require("socket.io")(server);
