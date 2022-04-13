@@ -1,4 +1,5 @@
-const { io } = require("./www.js");
+var { server } = require("./www");
+var io = require("socket.io")(server);
 
 module.exports = (data) => {
   // test emit

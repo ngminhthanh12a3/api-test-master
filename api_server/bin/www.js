@@ -27,10 +27,11 @@ app.set("port", port);
  */
 
 var server = http.createServer(app);
-
+exports.server = server;
 /**
  * Listen on provided port, on all network interfaces.
  */
+// exports.io = require("socket.io").Namespace.;
 
 server.listen(port, () => console.log(`Server listening on port ${port}`));
 server.on("error", onError);
@@ -92,4 +93,4 @@ function onListening() {
   debug("Listening on " + bind);
 }
 
-exports.io = require("socket.io")(server);
+// io.
