@@ -12,10 +12,11 @@ const blockNumber = new Uint8Array([
 ]); // 8 bytes blockNumber
 
 // module export: decrypt chaCha20 function.
-module.exports = (payload) => {
+module.exports = (payload, json) => {
   const message = new JSChaCha20(key, nonce, blockNumber).decrypt(payload);
   var string = new TextDecoder().decode(message);
 
+  if (json) return JSON.parse(string);
   // return chaCha20 decrypt message string.
   return string;
 };
