@@ -20,6 +20,7 @@ services:
       options:
         max-size: "10m"
         max-file: "3"
+    
 
   mongo:
     ports:
@@ -47,6 +48,7 @@ services:
       options:
         max-size: "10m"
         max-file: "3"
+  
   broker:
     image: broker
     build:

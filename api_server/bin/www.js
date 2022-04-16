@@ -12,13 +12,6 @@ var http = require("http");
  * Get port from environment and store in Express.
  */
 
-// connect to mongodb
-var { connectToMongo } = require("./mongoDB");
-connectToMongo();
-
-// listen to mqtt
-var listenToMQTT = require("./listenToMQTT");
-listenToMQTT();
 var port = normalizePort(process.env.PORT || "3001");
 app.set("port", port);
 
@@ -28,6 +21,20 @@ app.set("port", port);
 
 var server = http.createServer(app);
 exports.server = server;
+
+// connect to mongodb
+var { connectToMongo } = require("./mongoDB");
+connectToMongo();
+
+// listen to mqtt
+var listenToMQTT = require("./listenToMQTT");
+listenToMQTT();
+
+var connectSocketClient = require("./connectSocketClient");
+connectSocketClient();
+
+var { listenToClientSocket } = require("./emitToClient");
+listenToClientSocket();
 /**
  * Listen on provided port, on all network interfaces.
  */

@@ -28,12 +28,12 @@ module.exports = () => {
     //     }
     //   })
   });
-  // var emitToClient = require("./emitToClient");
+  var { emitToClient } = require("./emitToClient");
   client.on("message", (topic, payload) => {
     // console.log("Received Message:", topic, payload.toString());
     // test mqtt come
     // console.log("Encrypt Data Come");
     // emit to clients
-    // emitToClient("Encrypt Data come");
+    emitToClient("Encrypt Data come");
   });
 };

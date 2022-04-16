@@ -1,11 +1,10 @@
 import { useEffect } from "react";
-import io from "socket.io-client";
+import { io } from "socket.io-client";
 import { API_URL } from "../constants";
-let socket = io(API_URL, {
-  transports: ["websocket", "polling", "flashsocket"],
-});
+let socket = io(API_URL, { withCredentials: true });
 const Protected = () => {
   useEffect(() => {
+    console.log("URL", API_URL);
     socket.on("encryptDT", (message) => console.log(message));
   }, []);
   return (

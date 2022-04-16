@@ -14,7 +14,7 @@ services:
       - CLIENT_URL=http://localhost:3000
     # bind mount
     volumes:
-      - ./api_server:/mern-app/server
+      - ./api_server/:/mern-app/server/
       - /mern-app/server/node_modules
 
   mongo:
@@ -28,13 +28,15 @@ services:
     environment:
       - PORT=3000
       - REACT_APP_API_URL=http://localhost:3001
+      - REACT_APP_API_SOCKET_URL=ws://localhost:3001
     ports:
       - "3000:3000"
     command: yarn start
-    # bind mount
+  # bind mount
     volumes:
-      - ./my_react_route:/mern-app/client
+      - ./my_react_route/:/mern-app/client/
       - /mern-app/client/node_modules
+
   broker:
     build:
       dockerfile: Dockerfile-dev
@@ -47,6 +49,6 @@ services:
       - PORT=1883
     # bind mount
     volumes:
-      - ./broker:/mern-app/broker
-      - /mern-app/broker/node_modules    
+      - ./broker/:/mern-app/broker/
+      - /mern-app/broker/node_modules
   
