@@ -1,4 +1,4 @@
-var mongoose = require("mongoose");
+const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 var deviceInfoSchema = new Schema({
@@ -17,6 +17,6 @@ var deviceInfoSchema = new Schema({
   wifi_status: String,
 });
 
-var DeviceInfo = mongoose.model("DeviceInfo", deviceInfoSchema);
+const DeviceInfo = mongoose.model("DeviceInfo", deviceInfoSchema);
 
 module.exports = DeviceInfo;
