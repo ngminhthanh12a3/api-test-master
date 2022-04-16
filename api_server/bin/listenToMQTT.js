@@ -30,11 +30,12 @@ module.exports = () => {
   });
   var { emitToClient } = require("./emitToClient");
   var { chacha20DecryptHandler } = require("../handler");
+  const { chacha20DecryptValue } = require("../constants");
+  var { storeToTempDeviceJSON } = require("../handler");
   client.on("message", (topic, payload) => {
-    // console.log("Received Message:", topic, payload.toString());
-    // test mqtt come
-    // console.log("Encrypt Data Come");
+    const decryptJSON = chacha20DecryptHandler(payload, "1");
+    storeToTempDeviceJSON(decryptJSON);
     // emit to clients
-    emitToClient(chacha20DecryptHandler(payload, "1"));
+    emitToClient(chacha20DecryptValue); //
   });
 };
