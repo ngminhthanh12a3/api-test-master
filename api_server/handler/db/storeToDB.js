@@ -1,6 +1,6 @@
 module.exports = (Model, data, query) => {
-  console.log("Test: store to db", Model.findOne(query));
-  if (Model.findOne(query).then((data) => data.json()))
+  console.log("Test: store to db");
+  if (Model.findOne(query).then((err, data) => data.json()))
     Model.findOneAndUpdate(query, data);
   else {
     var newModel = new Model(data);
