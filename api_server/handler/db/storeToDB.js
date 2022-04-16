@@ -1,5 +1,5 @@
 module.exports = async (Model, data, query) => {
-  const dataCheck = await Model.findOne(query);
+  const dataCheck = await Model.findOne({ devID: "6" });
   // .lean()
   // .exec((err, dataFind) => dataFind);
   console.log("Test db:", dataCheck);
