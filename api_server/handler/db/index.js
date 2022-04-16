@@ -1,0 +1,1 @@
+exports.storeToDB = require("./storeToDB");

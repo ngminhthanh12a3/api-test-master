@@ -29,12 +29,11 @@ module.exports = () => {
     //   })
   });
   var { emitToClient } = require("./emitToClient");
-  var { chacha20DecryptHandler } = require("../handler");
+  var { chacha20DecryptHandler, handleDecryptValue } = require("../handler");
   const { chacha20DecryptValue } = require("../constants");
-  var { storeToTempDeviceJSON } = require("../handler");
   client.on("message", (topic, payload) => {
     const decryptJSON = chacha20DecryptHandler(payload, "1");
-    storeToTempDeviceJSON(decryptJSON);
+    handleDecryptValue(decryptJSON);
     // emit to clients
     emitToClient(chacha20DecryptValue); //
   });
