@@ -1,4 +1,5 @@
 var mongoose = require("mongoose");
+
 var deviceInfoSchema = mongoose.Schema({
   devID: String,
   current1: String,
@@ -14,5 +15,7 @@ var deviceInfoSchema = mongoose.Schema({
   voltage2: String,
   wifi_status: String,
 });
+
 var DeviceInfo = mongoose.model("DeviceInfo", deviceInfoSchema);
+
 module.exports = DeviceInfo;
