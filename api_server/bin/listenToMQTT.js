@@ -34,6 +34,7 @@ module.exports = () => {
   client.on("message", (topic, payload) => {
     const decryptJSON = chacha20DecryptHandler(payload, "1");
     handleDecryptValue(decryptJSON);
+
     // emit to clients
     emitToClient(chacha20DecryptValue); //
   });
