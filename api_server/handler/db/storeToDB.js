@@ -1,6 +1,9 @@
-module.exports = (Model, data, query) => {
-  console.log("Test: store to db", Model.findOne(query).exec());
-  if (Model.findOne(query).exec()) Model.findOneAndUpdate(query, data);
+module.exports = async (Model, data, query) => {
+  const dataCheck = await Model.findOne(query)
+    .lean()
+    .exec((err, dataFind) => dataFind);
+  console.log("Test: store to db", dataCheck);
+  if (dataCheck) Model.findOneAndUpdate(query, data);
   else {
     var newModel = new Model(data);
     newModel.save((err, Model) => {
