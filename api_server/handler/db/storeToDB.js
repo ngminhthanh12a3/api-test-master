@@ -8,6 +8,7 @@ module.exports = async (Model, data, query) => {
     var newModel = new Model(data);
     newModel.save((err, Model) => {
       if (err) console.log(err);
+      else console.log("DB success");
     });
   }
 };
