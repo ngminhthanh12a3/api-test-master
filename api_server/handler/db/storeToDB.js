@@ -1,13 +1,12 @@
 module.exports = async (Model, data, query) => {
-  const dataCheck = await Model.findOne({ devID: "6" });
-  // .lean()
-  // .exec((err, dataFind) => dataFind);
-  console.log("Test db:", dataCheck);
-  // if (await dataCheck) Model.findOneAndUpdate(query, data);
-  // else {
-  //   var newModel = new Model(data);
-  //   newModel.save((err, Model) => {
-  //     if (err) console.log(err);
-  //   });
-  // }
+  const dataCheck = await Model.findOne(query);
+
+  if (dataCheck) Model.findOneAndUpdate(query, data);
+  else {
+    var newModel = new Model(data);
+
+    newModel.save((err, Model) => {
+      if (err) console.log(err);
+    });
+  }
 };
