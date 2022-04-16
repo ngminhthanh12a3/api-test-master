@@ -1,6 +1,7 @@
 var mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
-var deviceInfoSchema = mongoose.Schema({
+var deviceInfoSchema = new Schema({
   devID: String,
   current1: String,
   current2: String,
