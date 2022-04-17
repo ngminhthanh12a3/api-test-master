@@ -28,7 +28,8 @@ connectToMongo();
 
 const { loadDeviceInfoFromDB } = require("../handler");
 const { DeviceInfo } = require("../models");
-loadDeviceInfoFromDB(DeviceInfo);
+const { chacha20DecryptValue } = require("../constants");
+loadDeviceInfoFromDB(DeviceInfo, chacha20DecryptValue);
 
 // listen to mqtt
 var listenToMQTT = require("./listenToMQTT");

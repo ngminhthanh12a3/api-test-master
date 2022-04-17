@@ -1,11 +1,9 @@
-module.exports = async (Model) => {
+module.exports = async (Model, formatData) => {
   console.log("Load full data");
-  const formatData = {};
   const dataArray = await Model.find().lean().exec();
 
   await dataArray.forEach((data) => {
     const { devID, _id, __v, ...props } = data;
     formatData[devID] = props;
   });
-  return formatData;
 };
