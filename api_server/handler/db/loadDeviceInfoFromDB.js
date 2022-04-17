@@ -1,4 +1,11 @@
 module.exports = async (Model) => {
-  const data = await Model.find();
-  console.log(data);
+  const formatData = {};
+  const dataArray = await Model.find();
+
+  dataArray.forEach((data) => {
+    const { devID, _id, __v, ...props } = data;
+    formatData[devID] = props;
+  });
+  console.log(formatData);
+  // return formatData;
 };
