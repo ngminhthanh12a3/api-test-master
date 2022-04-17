@@ -1,4 +1,5 @@
 module.exports = async (Model) => {
+  console.log("Load full data");
   const formatData = {};
   const dataArray = await Model.find().lean().exec();
 
