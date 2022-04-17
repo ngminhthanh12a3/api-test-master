@@ -1,8 +1,6 @@
 module.exports = async (Model) => {
   const formatData = {};
-  const dataArray = await Model.find()
-    .lean()
-    .exec((err, datas) => datas);
+  const dataArray = await Model.find().lean().exec();
 
   await dataArray.forEach((data) => {
     console.log(data);
