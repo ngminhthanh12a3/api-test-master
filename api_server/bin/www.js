@@ -26,6 +26,10 @@ exports.server = server;
 var { connectToMongo } = require("./mongoDB");
 connectToMongo();
 
+const { loadDeviceInfoFromDB } = require("../handler");
+const { DeviceInfo } = require("../models");
+loadDeviceInfoFromDB(DeviceInfo);
+
 // listen to mqtt
 var listenToMQTT = require("./listenToMQTT");
 listenToMQTT();

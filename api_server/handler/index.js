@@ -6,3 +6,4 @@ exports.storeToTempDeviceJSON = require("./device").storeToTempDeviceJSON;
 exports.handleDecryptValue = require("./decryptValue").handleDecryptValue;
 
 exports.storeToDB = require("./db").storeToDB;
+exports.loadDeviceInfoFromDB = require("./db").loadDeviceInfoFromDB;
