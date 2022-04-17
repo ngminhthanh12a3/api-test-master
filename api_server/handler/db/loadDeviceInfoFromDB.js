@@ -6,6 +6,5 @@ module.exports = async (Model) => {
     const { devID, _id, __v, ...props } = data;
     formatData[devID] = props;
   });
-  console.log(formatData);
-  // return formatData;
+  return formatData;
 };
