@@ -17,12 +17,7 @@ aedes.authenticate = (client, username, password, callback) => {
   return callback(error, false);
 };
 
-const topics = [
-  "home/bedroom/fan",
-  "esp/publish",
-  "relay1/devID",
-  "relay2/devID",
-];
+const topics = ["esp/publish", "relay1/devID", "relay2/devID"];
 // authorizing client to publish on a message topic
 aedes.authorizePublish = (client, packet, callback) => {
   // check topics
@@ -54,15 +49,15 @@ aedes.on("client", function (client) {
 // });
 
 // emitted when a client subscribes to a message topic
-// aedes.on("subscribe", function (subscriptions, client) {
-//   console.log(
-//     `[TOPIC_SUBSCRIBED] Client ${
-//       client ? client.id : client
-//     } subscribed to topics: ${subscriptions
-//       .map((s) => s.topic)
-//       .join(",")} on broker ${aedes.id}`
-//   );
-// });
+aedes.on("subscribe", function (subscriptions, client) {
+  // console.log(
+  //   `[TOPIC_SUBSCRIBED] Client ${
+  //     client ? client.id : client
+  //   } subscribed to topics: ${subscriptions
+  //     .map((s) => s.topic)
+  //     .join(",")} on broker ${aedes.id}`
+  // );
+});
 
 // emitted when a client unsubscribes from a message topic
 // aedes.on("unsubscribe", function (subscriptions, client) {
@@ -76,12 +71,12 @@ aedes.on("client", function (client) {
 // });
 
 // emitted when a client publishes a message packet on the topic
-aedes.on("publish", async function (packet, client) {
-  if (client) {
-    console.log(
-      `[MESSAGE_PUBLISHED] Client ${
-        client ? client.id : "BROKER_" + aedes.id
-      } has published message on ${packet.topic} to broker ${aedes.id}`
-    );
-  }
-});
+// aedes.on("publish", async function (packet, client) {
+//   if (client) {
+//     console.log(
+//       `[MESSAGE_PUBLISHED] Client ${
+//         client ? client.id : "BROKER_" + aedes.id
+//       } has published message on ${packet.topic} to broker ${aedes.id}`
+//     );
+//   }
+// });

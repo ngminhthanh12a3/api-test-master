@@ -1,28 +1,17 @@
-import { Routes, Route, Outlet } from "react-router-dom";
-import { SignInPage, SignUpPage, NoMatchPage, ProtectedPage } from "./pages";
-import { AuthProvider, RequireAuth, AuthStatus } from "./AuthProvider";
-import { signupPath, protectedPath } from "./paths";
+import { Outlet } from "react-router-dom";
+import { AuthProvider, AuthStatus } from "./AuthProvider";
+import { ReactRoutes } from "./components";
+import { MyLayout } from "./pages";
 function App() {
   return (
     <AuthProvider>
-      <h1>Welcome to VNPT React Router </h1>
-      <AuthStatus />
+      <MyLayout>
+        {/* <h1>Welcome to VNPT React Router </h1>  */}
+        <AuthStatus />
+        <ReactRoutes />
 
-      <Routes>
-        <Route index element={<SignInPage />} />
-        <Route path={signupPath} element={<SignUpPage />} />
-        <Route
-          path={protectedPath}
-          element={
-            <RequireAuth>
-              <ProtectedPage />
-            </RequireAuth>
-          }
-        />
-        <Route path="*" element={<NoMatchPage />} />
-      </Routes>
-
-      <Outlet />
+        <Outlet />
+      </MyLayout>
     </AuthProvider>
   );
 }
