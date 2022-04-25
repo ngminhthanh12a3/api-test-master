@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
-import { useAuth } from "../AuthProvider";
+import { useAuth } from "../../AuthProvider";
 import { useNavigate, useLocation, Navigate } from "react-router-dom";
-import { protectedPath, signinPath } from "../paths";
-import { API_SIGNIN_URL, API_CHECK_SIGNIN_URL } from "../constants";
-import { signInInit } from "../apiInit";
+import { protectedPath, signinPath } from "../../paths";
+import { API_SIGNIN_URL, API_CHECK_SIGNIN_URL } from "../../constants";
+import { signInInit } from "../../apiInit";
+import SignInForm from "./SignInForm";
+import { ThrowMesssage } from "../../components";
 
 const SignIn = () => {
-  const [messageState, setMessageState] = useState("");
+  const [messageState, setMessageState] = useState({});
 
   let navigate = useNavigate();
   let location = useLocation();
@@ -32,11 +34,8 @@ const SignIn = () => {
         return error;
       });
   }, []);
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    const formData = new FormData(event.currentTarget);
-    const username = formData.get("username");
-    const password = formData.get("password");
+  const onFinish = async (values) => {
+    const { username, password } = values;
 
     // fetch api to signin
     fetch(
@@ -56,7 +55,7 @@ const SignIn = () => {
           throw new Error(res.err);
         }
 
-        setMessageState(res.msg);
+        setMessageState({ success: res.msg });
 
         // signin.
         auth.signin(username, () => {
@@ -65,7 +64,7 @@ const SignIn = () => {
       })
       .catch((err) => {
         console.log(err);
-        setMessageState(err.toString());
+        setMessageState({ err: err.toString() });
       });
   };
 
@@ -79,19 +78,9 @@ const SignIn = () => {
 
       {/* Warning if go to ptotected page */}
       {from !== signinPath && <p>You must log in to view the page at {from}</p>}
-      {messageState && <p style={{ color: "red" }}>{messageState}</p>}
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="username">Username:</label>
-        <br />
-        <input type="text" id="username" name="username" required />
-        <br></br>
-        <label htmlFor="pwd">Password:</label>
-        <br />
-        <input type="password" id="password" name="password" required />
-        <br />
-        <br />
-        <input type="submit" value="Signin"></input>
-      </form>
+      {messageState && ThrowMesssage(messageState)}
+
+      <SignInForm onFinish={onFinish} />
     </div>
   );
 };

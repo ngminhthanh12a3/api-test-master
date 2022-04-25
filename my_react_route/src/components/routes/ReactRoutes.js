@@ -4,6 +4,7 @@ import {
   NoMatchPage,
   ProtectedPage,
   SignInPage,
+  AuthPage,
   SignUpPage,
   DeviceInfomation,
 } from "../../pages";
@@ -12,7 +13,8 @@ import { protectedPath, signupPath } from "../../paths";
 const ReactRoutes = () => {
   return (
     <Routes>
-      <Route index element={<SignInPage />} />
+      {/* <Route index element={<SignInPage />} /> */}
+      <Route index element={<AuthPage />} />
       <Route path={signupPath} element={<SignUpPage />} />
       <Route
         path={protectedPath}
